@@ -1,0 +1,129 @@
+.detail-page .explain {
+  display: none !important;
+}
+
+.detail-page .workflow-fields {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  align-items: start !important;
+  width: 100% !important;
+}
+
+.detail-page .workflow-field {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+.detail-page .workflow-field > span,
+.detail-page .workflow-note > span {
+  display: block !important;
+  min-height: 18px;
+  line-height: 1.35;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.detail-page .workflow-field select {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  height: 42px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.detail-page .workflow-field select:disabled{cursor:not-allowed;background:#f1f5f9;color:#64748b}.detail-page .field-help{display:block;color:#64748b;font-size:11px;font-weight:500}.detail-page .evidence-upload{display:grid;gap:8px;margin:16px 0}.detail-page .evidence-upload>span:first-child{color:#475569;font-size:12px;font-weight:700}.detail-page .evidence-upload .photo-input{width:100%;box-sizing:border-box}.detail-page .evidence-upload .photo-preview{margin-top:2px}
+
+.detail-page .workflow-status-field {
+  justify-content: center;
+  min-height: 78px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border: 1px solid #dfe4ea;
+  border-radius: 8px;
+}
+
+.detail-page .workflow-status-field strong {
+  color: #172033;
+  font-size: 13px;
+}
+
+.detail-page .workflow-status-field small {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.detail-page .workflow-note {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+.detail-page .workflow-note textarea {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.detail-page .workflow-panel > .primary-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin-top: 16px !important;
+}
+
+.detail-page .workflow-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.detail-page .workflow-actions .primary-btn {
+  margin-top: 0 !important;
+}
+
+.detail-page .reject-btn {
+  min-height: 40px;
+  padding: 10px 15px;
+  color: #b91c1c;
+  background: #fff;
+  border: 1px solid #fecaca;
+  border-radius: 7px;
+  font: 600 12px inherit;
+  cursor: pointer;
+}
+
+.detail-page .reject-btn:hover {
+  background: #fff1f2;
+}
+
+@media (max-width: 800px) {
+  .detail-page .workflow-fields {
+    grid-template-columns: 1fr !important;
+  }
+
+  .detail-page .workflow-panel > .primary-btn {
+    width: 100% !important;
+  }
+
+  .detail-page .workflow-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .detail-page .workflow-actions .primary-btn,
+  .detail-page .reject-btn {
+    width: 100% !important;
+  }
+}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>laporkita</title>
+    <script>
+      (() => {
+        try {
+          const saved = JSON.parse(localStorage.getItem('laporkita-settings') || '{}')
+          if (saved.website_name) document.title = saved.website_name
+          if (saved.favicon) {
+            const icon = document.querySelector('link[rel="icon"]')
+            if (icon) icon.href = saved.favicon
+          }
+        } catch {
+          // Gunakan judul default bila data pengaturan belum tersedia.
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

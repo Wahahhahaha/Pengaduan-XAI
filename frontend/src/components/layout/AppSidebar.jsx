@@ -1,0 +1,13 @@
+import { Activity, ArchiveRestore, Bell, Bot, ChevronDown, ChevronLeft, ClipboardList, DatabaseBackup, FileBarChart2, LayoutDashboard, LifeBuoy, Settings, ShieldCheck, SlidersHorizontal, Users } from 'lucide-react'
+import { NavLink } from 'react-router-dom'
+import useWebsiteSettings from '../../hooks/useWebsiteSettings'
+import { canAccessRoute, getAuth } from '../../app/permissions'
+import { useEffect, useState } from 'react'
+
+export default function AppSidebar({ collapsed, setCollapsed }) {
+  const settings = useWebsiteSettings()
+  const [, refreshPermissions] = useState(0)
+  useEffect(() => { const refresh = () => refreshPermissions(value => value + 1); window.addEventListener('laporkita-permissions-updated', refresh); window.addEventListener('storage', refresh); return () => { window.removeEventListener('laporkita-permissions-updated', refresh); window.removeEventListener('storage', refresh) } }, [])
+  const groups = [['MAIN MENU', [['Dashboard', '/admin/dashboard', LayoutDashboard], ['Complaints', '/admin/complaints', ClipboardList], ['AI Analysis', '/admin/ai/predictions', Bot], ['Reports & Statistics', '/admin/reports', FileBarChart2]]], ['MANAGEMENT', [['Categories', '/admin/categories', SlidersHorizontal], ['User Management', '/admin/users', Users]]], ['SYSTEM', [['Notifications', '/admin/notifications', Bell], ['Website Settings', '/admin/system/settings', Settings], ['Activity Log', '/admin/system/activity-logs', Activity], ['Roles & Permissions', '/admin/system/permissions', ShieldCheck], ['Database Backup', '/admin/system/backup', DatabaseBackup], ['Recycle Bin', '/admin/system/recycle-bin', ArchiveRestore]]]]
+  return <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}><div className="brand"><div className="brand-mark">{settings.logo ? <img src={settings.logo} alt="Logo" /> : <LifeBuoy size={22} />}</div>{!collapsed && <div><strong>{settings.website_name}</strong></div>}<button className="collapse" onClick={() => setCollapsed(!collapsed)}><ChevronLeft size={16} /></button></div><nav>{groups.map(([label, items]) => { const visible = items.filter(([, path]) => canAccessRoute(path, getAuth())); return visible.length > 0 && <div className="nav-group" key={label}>{!collapsed && <p>{label}</p>}{visible.map(([name, path, Icon]) => <NavLink key={name} to={path} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} title={collapsed ? name : undefined}><Icon size={18} /><span>{!collapsed && name}</span>{name === 'Complaints' && !collapsed && <ChevronDown size={14} className="nav-chevron" />}</NavLink>)}</div> })}</nav><div className="sidebar-footer" /></aside>
+}

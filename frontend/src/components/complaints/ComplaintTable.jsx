@@ -1,0 +1,5 @@
+import { ChevronRight } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import Badge from '../ui/Badge'
+import IconButton from '../ui/IconButton'
+export default function ComplaintTable({ rows }) { const navigate = useNavigate(); return <div className="table-wrap"><table><thead><tr><th>COMPLAINT</th><th>CATEGORY</th><th>REPORTER</th><th>STATUS</th><th>PRIORITY</th><th>LAST UPDATED</th><th /></tr></thead><tbody>{rows.map(row => <tr key={row.id} onClick={() => navigate(`/admin/complaints/${row.id}`)}><td><b>{row.id}</b><span>{row.title}</span></td><td>{row.category}</td><td>{row.citizen}</td><td><Badge tone={row.status === 'Completed' ? 'green' : row.status === 'Pending Verification' ? 'amber' : 'blue'}>{row.status}</Badge></td><td><Badge tone={row.priority === 'Urgent' ? 'red' : row.priority === 'High' ? 'amber' : 'neutral'}><i className="priority-dot" />{row.priority}</Badge></td><td className="muted">{row.date}</td><td><IconButton label="Open complaint"><ChevronRight size={16} /></IconButton></td></tr>)}</tbody></table></div> }

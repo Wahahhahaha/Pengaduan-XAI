@@ -1,0 +1,11 @@
+import { Link } from 'react-router-dom'
+import UsersPage from '../management/UsersPagePersistent'
+import PermissionsPage from '../system/PermissionsPage?permissions=v2'
+import { ActivityLogsPage, AIPage, ReportsPage } from '../system/ResourcePages'
+import { CategoriesPage, DepartmentsPage } from '../system/MasterPagesPersistent'
+import WebsiteSettingsConnectedPage from '../system/SystemSettingsSplitPage'
+import ReportPage from '../system/ReportPage'
+import AIAnalysisPage from '../system/AIAnalysisPageClean'
+import RecycleBinPage from '../system/RecycleBinPersistentPage'
+import ActivityLogLivePage from '../system/ActivityLogLivePage'
+export default function ModulePage({ title, description = 'This module is ready to connect to the backend API.' }) { if (title === 'Manajemen Pengguna') return <UsersPage />; if (title === 'Hak Akses' || title === 'Role') return <PermissionsPage />; if (title === 'Manajemen Kategori') return <CategoriesPage />; if (title === 'Manajemen Instansi') return <DepartmentsPage />; if (title === 'Pengaturan Website') return <WebsiteSettingsConnectedPage />; if (title === 'Activity Log') return <ActivityLogLivePage />; if (title === 'Recycle Bin') return <RecycleBinPage />; if (title === 'Laporan & Statistik') return <ReportPage />; if (title.includes('AI') || title.includes('Prediksi') || title.includes('Evaluasi')) return <AIAnalysisPage title={title} />; return <div className="placeholder panel"><div className="placeholder-icon">◌</div><h2>{title}</h2><p>{description}</p><Link className="primary-btn" to="/admin/dashboard">Back to Dashboard</Link></div> }

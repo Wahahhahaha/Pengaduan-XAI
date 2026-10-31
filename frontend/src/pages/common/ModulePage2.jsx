@@ -1,0 +1,6 @@
+import { Link } from 'react-router-dom'
+import UsersPage from '../management/UsersPage'
+import PermissionsPage from '../system/PermissionsPage'
+import { ActivityLogsPage, AIPage, CategoriesPage, DepartmentsPage, ReportsPage } from '../system/ResourcePages'
+import WebsiteSettingsConnectedPage from '../system/WebsiteSettingsConnectedPage'
+export default function ModulePage({ title, description = 'Modul ini sudah memiliki route tersendiri dan siap dihubungkan ke API sesuai permission backend.' }) { if (title === 'Manajemen Pengguna') return <UsersPage />; if (title === 'Hak Akses' || title === 'Role') return <PermissionsPage />; if (title === 'Manajemen Kategori') return <CategoriesPage />; if (title === 'Manajemen Instansi') return <DepartmentsPage />; if (title === 'Pengaturan Website') return <WebsiteSettingsConnectedPage />; if (title === 'Activity Log') return <ActivityLogsPage />; if (title === 'Laporan & Statistik') return <ReportsPage />; if (title.includes('AI') || title.includes('Prediksi') || title.includes('Evaluasi')) return <AIPage title={title} />; return <div className="placeholder panel"><div className="placeholder-icon">◌</div><h2>{title}</h2><p>{description}</p><Link className="primary-btn" to="/admin/dashboard">Kembali ke Dashboard</Link></div> }

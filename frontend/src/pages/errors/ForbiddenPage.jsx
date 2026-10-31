@@ -1,0 +1,2 @@
+import { Link } from 'react-router-dom'
+export default function ForbiddenPage() { return <div className="error-page"><div className="error-card"><div className="error-icon">403</div><span className="error-eyebrow">ACCESS DENIED</span><h1>Akses ditolak</h1><p>Anda tidak memiliki izin untuk membuka halaman ini.</p><Link className="primary-btn" to="/admin/dashboard">Kembali ke Dashboard</Link></div></div> }

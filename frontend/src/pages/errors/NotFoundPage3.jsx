@@ -1,0 +1,5 @@
+import { Link, useLocation } from 'react-router-dom'
+import LandingPage from '../common/LandingPage'
+import ProfilePage from '../common/ProfilePage'
+import BackupPage from '../system/BackupPage'
+export default function NotFoundPage() { const location = useLocation(); if (location.pathname === '/') return <LandingPage />; if (location.pathname === '/admin/profile') return <ProfilePage />; if (location.pathname === '/admin/system/backup') return <BackupPage />; const code = location.pathname === '/500' ? '500' : location.pathname === '/501' ? '501' : location.pathname === '/419' ? '419' : '404'; const message = code === '500' ? 'Terjadi kesalahan pada server.' : code === '501' ? 'Fitur belum tersedia.' : code === '419' ? 'Sesi Anda telah berakhir.' : 'URL yang Anda buka tidak tersedia.'; return <div className="error-page"><div className="error-code">{code}</div><h1>{code === '404' ? 'Halaman tidak ditemukan' : 'Terjadi masalah'}</h1><p>{message}</p><Link className="primary-btn" to="/">Kembali ke Beranda</Link></div> }

@@ -1,0 +1,5 @@
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import { CheckCircle2, X, XCircle } from 'lucide-react'
+const ToastContext = createContext(null)
+export function ToastProvider({ children }) { const [toast, setToast] = useState(null); const showToast = useCallback((message, type = 'success') => setToast({ message, type }), []); useEffect(() => { if (!toast) return undefined; const timer = setTimeout(() => setToast(null), 3000); return () => clearTimeout(timer) }, [toast]); return <ToastContext.Provider value={showToast}>{children}{toast && <div className={`toast toast-${toast.type}`} role="status"><div className="toast-icon">{toast.type === 'success' ? <CheckCircle2 size={18} /> : <XCircle size={18} />}</div><span>{toast.message}</span><button aria-label="Tutup notifikasi" onClick={() => setToast(null)}><X size={15} /></button><i className="toast-progress" /></div>}</ToastContext.Provider> }
+export function useToast() { return useContext(ToastContext) }
